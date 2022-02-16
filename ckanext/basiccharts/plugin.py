@@ -19,8 +19,8 @@ class BaseChart(p.SingletonPlugin):
     p.implements(p.IResourceView, inherit=True)
 
     def update_config(self, config):
-        p.toolkit.add_template_directory(config, 'theme/templates')
-        p.toolkit.add_resource('theme/public', 'basiccharts')
+        p.toolkit.add_template_directory(config, 'templates')
+        p.toolkit.add_resource("assets", "basiccharts")
 
     def info(self):
         schema = {
@@ -130,12 +130,12 @@ class BasicGrid(p.SingletonPlugin):
         extra_template_paths = config.get('extra_template_paths', '')
 
         template_dir = os.path.join(rootdir, 'ckanext', 'basiccharts',
-                                    'basicgrid', 'templates')
+                                    'templates', 'basicgrid')
         config['extra_template_paths'] = ','.join([template_dir,
                                                   extra_template_paths])
 
-        p.toolkit.add_resource('basicgrid/resources', 'basicgrid')
-        p.toolkit.add_resource('theme/public', 'basiccharts')
+        p.toolkit.add_resource("assets", "basiccharts")
+        p.toolkit.add_resource("assets", "basiccharts-basicgrid")
 
     def info(self):
         schema = {
@@ -205,7 +205,7 @@ def _view_data(resource_view):
 
 def parse_filter_params():
     filters = collections.defaultdict(list)
-    filter_string = dict(p.toolkit.request.GET).get('filters', '')
+    filter_string = dict(p.toolkit.request.args).get('filters', '')
     for filter in filter_string.split('|'):
         if filter.count(':') != 1:
             continue

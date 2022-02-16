@@ -1,0 +1,33 @@
+basiccharts-js:
+  filter: rjsmin
+  output: ckanext-basiccharts/%(version)s-basiccharts.js
+  extra:
+    preload:
+      - base/main
+  contents:
+    - js/vendor/jquery.flot.js
+    - js/vendor/jquery.flot.pie.js
+    - js/vendor/jquery.flot.time.js
+    - js/vendor/jquery.flot.categories.js
+    - js/vendor/jquery.flot.tooltip.js
+    - js/vendor/jquery.flot.resize.js
+    - js/vendor/queryStringToJSON.js
+    - js/vendor/backend.ckan.js
+    - js/basiccharts.js
+    - js/basiccharts_view.js
+
+basiccharts-css:
+  output: ckanext-basiccharts/%(version)s-basiccharts.css
+  filter: cssrewrite
+  contents:
+    - css/basiccharts.css
+
+basiccharts-basicgrid-js:
+  filter: rjsmin
+  output: ckanext-basiccharts/%(version)s-basiccharts-basicgrid.js
+  extra:
+    preload:
+      - base/main
+      - vendor/reorder
+  contents:
+    - js/basicgrid.js

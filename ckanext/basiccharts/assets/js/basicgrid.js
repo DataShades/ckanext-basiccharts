@@ -4,7 +4,7 @@ ckan.module("basicgrid-multiselect", function (jQuery) {
   function initialize() {
     var self = this;
 
-    self.el.select2({"data":self.options.fields, multiple:true, width:"element"});
+    self.el.select2({"data":self.options.fields, multiple:true, width:"100%"});
 
     self.el.select2("container").find("ul.select2-choices").sortable({
         containment: "parent",
