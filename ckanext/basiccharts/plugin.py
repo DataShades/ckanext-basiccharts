@@ -131,8 +131,9 @@ class BasicGrid(p.SingletonPlugin):
 
         template_dir = os.path.join(rootdir, 'ckanext', 'basiccharts',
                                     'templates', 'basicgrid')
-        config['extra_template_paths'] = ','.join([template_dir,
-                                                  extra_template_paths])
+        config['extra_template_paths'] = template_dir
+        if extra_template_paths:
+            config['extra_template_paths'] += ',' + template_dir
 
         p.toolkit.add_resource("assets", "basiccharts")
         p.toolkit.add_resource("assets", "basiccharts-basicgrid")
